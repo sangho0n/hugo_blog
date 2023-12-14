@@ -13,8 +13,8 @@ languageName = "한국어"
 title = "sanghoon's dev-log"
 weight = 1
 
-  [languages.en.params]
-  description = "Example description"
+  [languages.ko.params]
+  description = "이건머지"
 
 [languages.en]
 languageName = "English"
