@@ -9,6 +9,9 @@ hugo -t hugo-theme-stack
 
 # Go To Public folder
 
+rm -rf .git/modules
+rm -rf build
+git submodule update --init
 cd public
 git checkout main
 # Add changes to git.
