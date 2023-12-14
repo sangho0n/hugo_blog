@@ -9,8 +9,9 @@ hugo -t hugo-theme-stack
 
 # Go To Public folder
 
+git submodule update --init --recursive
+git submodule update --recursive --remote
 cd public
-git checkout main
 # Add changes to git.
 
 git add .
