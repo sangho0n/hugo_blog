@@ -29,3 +29,20 @@ git commit -m "$msg"
 
 git push origin main
 
+# Come Back up to the Project Root
+
+cd ..
+git checkout master
+# blog 저장소 Commit & Push
+
+git add .
+
+msg="rebuilding site `date`"
+if [ $# -eq 1 ]
+  then msg="$1"
+fi
+git commit -m "$msg"
+
+## master 대신 각자 연결한 branch 명으로 수정하면 된다.
+
+git push origin master
