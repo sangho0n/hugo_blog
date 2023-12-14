@@ -5,33 +5,24 @@ paginate = 5
 
 copyright = "Example Person"
 disqusShortname = "hugo-theme-stack"
-DefaultContentLanguage = "en"
+DefaultContentLanguage = "ko"
 hasCJKLanguage = false
 
-[languages.en]
-languageName = "English"
-title = "Example Site"
+[languages.ko]
+languageName = "한국어"
+title = "sanghoon's dev-log"
 weight = 1
 
   [languages.en.params]
   description = "Example description"
 
-[languages.zh-cn]
-languageName = "中文"
-title = "演示站点"
+[languages.en]
+languageName = "English"
+title = "sanghoon's dev-log"
 weight = 2
 
-  [languages.zh-cn.params]
-  description = "演示说明"
-
-[languages.ar]
-languageName = "عربي"
-languagedirection = "rtl"
-title = "موقع تجريبي"
-weight = 3
-
-  [languages.ar.params]
-  description = "وصف تجريبي"
+  [languages.en.params]
+  description = "Example description"
 
 [permalinks]
 post = "/p/:slug/"
