@@ -9,9 +9,8 @@ hugo -t hugo-theme-stack
 
 # Go To Public folder
 
-git submodule update --init --recursive
-git submodule update --recursive --remote
 cd public
+git checkout main
 # Add changes to git.
 
 git add .
@@ -30,21 +29,3 @@ git commit -m "$msg"
 
 git push origin main
 
-# Come Back up to the Project Root
-
-cd ..
-
-
-# blog 저장소 Commit & Push
-
-git add .
-
-msg="rebuilding site `date`"
-if [ $# -eq 1 ]
-  then msg="$1"
-fi
-git commit -m "$msg"
-
-## master 대신 각자 연결한 branch 명으로 수정하면 된다.
-
-git push origin master
