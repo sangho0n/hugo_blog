@@ -9,7 +9,7 @@ hugo -t hugo-theme-stack
 
 # Go To Public folder
 
-cd "public @ 52953e4"
+cd public
 git checkout main
 # Add changes to git.
 
