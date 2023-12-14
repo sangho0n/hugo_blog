@@ -2,3 +2,6 @@
 	path = public
 	url = https://github.com/sangho0n/sangho0n.github.io.git
 	branch = main
+[submodule "themes/hugo-theme-stack"]
+	path = themes/hugo-theme-stack
+	url = https://github.com/sangho0n/hugo-theme-stack.git
