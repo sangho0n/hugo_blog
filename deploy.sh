@@ -9,8 +9,7 @@ hugo -t hugo-theme-stack
 
 # Go To Public folder
 
-git submodule update --init
-cd public
+cd "public @ 52953e4"
 git checkout main
 # Add changes to git.
 
