@@ -27,7 +27,7 @@ git commit -m "$msg"
 
 ## master 대신 각자 연결한 branch 명으로 수정하면 된다.
 
-git push origin main --force
+git push origin main
 
 # Come Back up to the Project Root
 
@@ -45,4 +45,4 @@ git commit -m "$msg"
 
 ## master 대신 각자 연결한 branch 명으로 수정하면 된다.
 
-git push origin master --force
+git push origin master
