@@ -1,7 +1,7 @@
 ---
 title: "Test2"
 date: 2024-01-31
-draft: true
+draft: false
 ---
 
 
