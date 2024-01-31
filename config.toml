@@ -9,7 +9,7 @@ DefaultContentLanguage = "ko"
 hasCJKLanguage = false
 
 [languages.ko]
-contentDir = "content/ko/post"
+contentDir = "content/ko"
 languageName = "한국어"
 title = "sanghoon's dev-log"
 weight = 1
@@ -18,7 +18,7 @@ weight = 1
   description = "개발일지"
 
 [languages.en]
-contentDir = "content/en/post"
+contentDir = "content/en"
 languageName = "English"
 title = "sanghoon's dev-log"
 weight = 2
