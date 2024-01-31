@@ -45,4 +45,4 @@ git commit -m "$msg"
 
 ## master 대신 각자 연결한 branch 명으로 수정하면 된다.
 
-git push origin master
+git push origin master  --force
