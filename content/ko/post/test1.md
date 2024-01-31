@@ -1,7 +1,7 @@
 ---
 title: "Test1"
-date: 2023-12-14T13:08:58+09:00
-draft: true
+date: "2023-12-14"
+draft: false
 ---
 
 
