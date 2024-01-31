@@ -39,8 +39,8 @@ rssFullContent = true
   since = 2023
 
   [params.dateFormat]
-  published = "2006-01-02"
-  lastUpdated = "2006-01-02"
+  published = 2024-01-31T17:01:33+09:00
+  lastUpdated = 2024-01-31T17:01:33+09:00
 
   [params.sidebar]
   emoji = "🍥"
