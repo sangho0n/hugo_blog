@@ -1,6 +1,6 @@
 ---
 title: "Test2"
-date: 2024-01-31T17:01:33+09:00
+date: 2024-01-31
 draft: true
 ---
 
