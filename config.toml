@@ -6,7 +6,7 @@ paginate = 5
 copyright = "Sanghoon, Han"
 disqusShortname = "hugo-theme-stack"
 DefaultContentLanguage = "ko"
-hasCJKLanguage = false
+hasCJKLanguage = true
 
 [languages.ko]
 contentDir = "content/ko"
