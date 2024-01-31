@@ -32,11 +32,11 @@
             <div>
                 {{ partial "helper/icon" "date" }}
                 <time class="article-time--published">
-                    {{- .Date.Format "2022-12-31" -}}
+                    {{- .Date.Format "2006-01-02" -}}
                 </time>
             </div>
         {{ end }}
-
+<!--
         {{ if $showReadingTime }}
             <div>
                 {{ partial "helper/icon" "clock" }}
@@ -45,6 +45,7 @@
                 </time>
             </div>
         {{ end }}
+-->
     </footer>
     {{ end }}
 
