@@ -1,5 +1,4 @@
-baseURL = 'sangho0n.github.io/'
-# baseURL = '/'
+baseURL = 'https://sangho0n.github.io/'
 languageCode = 'ko-kr'
 theme = 'hugo-theme-stack'
 paginate = 5
