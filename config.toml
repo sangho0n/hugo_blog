@@ -1,4 +1,5 @@
-baseURL = 'http://sangho0n.github.io/'
+baseURL = 'sangho0n.github.io/'
+# baseURL = '/'
 languageCode = 'ko-kr'
 theme = 'hugo-theme-stack'
 paginate = 5
@@ -49,7 +50,7 @@ rssFullContent = true
     [params.sidebar.avatar]
     enabled = true
     local = true
-    src = "/img/avatar.png"
+    src = "img/avatar.png"
 
   [params.article]
   math = false
