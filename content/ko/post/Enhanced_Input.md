@@ -155,12 +155,12 @@ Order가 default로 YXZ이므로 위 스칼라값인 1을 모디파이어를 통
 
 아래의 표는 트리거 유형에 따른 타입이다.
 
-| 트리거 클래스(cpp)                |                     타입 |
-|:----------------------------|-----------------------:|
-| UInputTriggerCombo(default) | ETriggerType::Explicit |
-| UInputTriggerCombo          |ETriggerType::Implicit |
-| UInputTriggerChordAction    |ETriggerType::Implicit |
-| UInputTriggerChordBlocker   |ETriggerType::Blocker |
+| 트리거 클래스(cpp)              |                     타입 |
+|:--------------------------|-----------------------:|
+| UInputTrigger(default)    | ETriggerType::Explicit |
+| UInputTriggerCombo        |ETriggerType::Implicit |
+| UInputTriggerChordAction  |ETriggerType::Implicit |
+| UInputTriggerChordBlocker |ETriggerType::Blocker |
 
 
 한편 사용자 입력을 처리하고 나면 트리거는 다음 세 개의 상태 중 하나를 반환할 수 있다.
