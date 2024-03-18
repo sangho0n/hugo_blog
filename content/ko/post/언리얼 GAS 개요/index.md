@@ -1,6 +1,7 @@
 ---
 title: "언리얼 GAS 개요"
 date: 2024-02-14T13:53:44+09:00
+image: img/unreal.svg
 
 tags: ["Unreal", "언리얼", "UE", "GAS", "어빌리티"]
 categories: ["Unreal"]

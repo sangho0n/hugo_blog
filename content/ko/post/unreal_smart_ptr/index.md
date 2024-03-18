@@ -1,6 +1,7 @@
 ---
 title: "언리얼 스마트 포인터"
 date: 2024-03-05T17:31:11+09:00
+image: img/unreal.svg
 
 tags: ["Unreal", "언리얼", "UE", "스마트포인터", "포인터"]
 categories: ["Unreal"]

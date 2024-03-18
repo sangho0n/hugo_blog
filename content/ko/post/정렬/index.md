@@ -1,7 +1,7 @@
 ---
 title: "정렬 알고리즘 간단 정리"
 date: 2024-02-26T11:49:35+09:00
-
+image: img/algorithm.png
 
 tags: ["기술면접", "알고리즘", "sort", "cs", "면접"]
 categories: ["알고리즘"]

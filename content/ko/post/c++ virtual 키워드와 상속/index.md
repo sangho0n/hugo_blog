@@ -1,6 +1,7 @@
 ---
 title: "C++ 상속과 virtual 키워드"
 date: 2024-03-08T11:12:45+09:00
+image: img/cpp.svg
 
 tags: ["기술면접", "언어", "cpp", "cs", "면접"]
 categories: ["c++"]

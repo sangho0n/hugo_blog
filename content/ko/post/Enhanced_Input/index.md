@@ -1,6 +1,7 @@
 ---
 title: "언리얼 Enhanced Input"
 date: 2024-02-14T17:44:19+09:00
+image: img/unreal.svg
 
 tags: ["Unreal", "언리얼", "UE", "Enhanced Input", "향상된", "UE5"]
 categories: ["Unreal"]
