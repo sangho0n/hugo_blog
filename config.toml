@@ -43,25 +43,25 @@ rssFullContent = true
   lastUpdated = "Jan 02, 2006 15:04 MST"
 
   [params.sidebar]
-  emoji = "🍥"
+  emoji = "😀"
   subtitle = "안녕하세요. 게임개발자 한상훈입니다."
 
     [params.sidebar.avatar]
     enabled = true
     local = true
-    src = "img/avatar.png"
+    src = 'avatar.png'
 
   [params.article]
   math = false
   toc = true
-  readingTime = true
+  readingTime = false
 
     [params.article.license]
     enabled = true
     default = "Licensed under CC BY-NC-SA 4.0"
 
   [params.comments]
-  enabled = true
+  enabled = false
   provider = "disqus"
 
     [params.comments.disqusjs]
@@ -139,7 +139,19 @@ enabled = true
 enabled = true
 
 [menu]
-main = [ ]
+  [[menu.main]]
+  identifier = "about"
+  name = "About"
+  url = "/about/"
+    [menu.main.params]
+    icon = "user"
+    
+  [[menu.main]]
+  identifier = "archives"
+  name = "Archives"
+  url = "/archives/"
+    [menu.main.params]
+    icon = "archives"
 
   [[menu.social]]
   identifier = "github"

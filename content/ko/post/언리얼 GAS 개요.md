@@ -14,7 +14,7 @@ series: ["게임플레이 어빌리티 시스템(GAS)"]
 
 ---------------
 
-# 게임플레이 어빌리티 시스템 
+## 게임플레이 어빌리티 시스템 
 - 액터의 어빌리티 및 어빌리티를 통한 액터 간 상호작용 기능을 제공하는 프레임워크
 - 장점
   - 유연성, 확장성 : 다양하고 복잡한 게임 제작에 쉽게 활용할 수 있다.
@@ -29,7 +29,7 @@ series: ["게임플레이 어빌리티 시스템(GAS)"]
 > 큰 규모의 RPG 및 멀티플레이 게임을 만들기에 적합함
 
 
-# 구성 요소
+## 구성 요소
 
 ![gas1.png](img/post/gas/gas1.png)
 
@@ -42,7 +42,7 @@ series: ["게임플레이 어빌리티 시스템(GAS)"]
 
 ![gas1.png](img/post/gas/gas2.png)
 
-# 멀티플레이 게임에서의 GAS
+## 멀티플레이 게임에서의 GAS
 GAS 플러그인은 다음과 같은 client-side-prediction(서버의 허가 없이 어빌리티 발동 및 이펙트를 적용하는 것)을 지원한다.
 
 - 어빌리티 발동
@@ -52,6 +52,6 @@ GAS 플러그인은 다음과 같은 client-side-prediction(서버의 허가 없
 - 게임플레이 큐 실행
 - CharacterMovementComponent와 연결된 RootMotionSource functions를 통한 움직임 조작
 
-# 블루프린트 vs C++
+## 블루프린트 vs C++
 
 GAS는 cpp을 사용하여 구현되어야 하지만, GameplayAbilities와 GameplayEffects에 한하여 블루프린트로 구현이 가능하다.
