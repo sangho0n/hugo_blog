@@ -38,6 +38,7 @@ def translate_files(files):
         if file_path and file_path.startswith('content'):
             with open(file_path, 'r', encoding='UTF-8') as file:
                 korean_text = file.read()
+            print('succeed to open file ' + file_path +'. try to translate...')
             translated_text = translate(korean_text)
             # 영어 파일 경로 생성
             english_file_path = file_path.replace('content/ko/', 'content/en/')
@@ -51,6 +52,7 @@ def translate_files(files):
             # img 디렉토리의 내용을 영어 img 디렉토리로 복사
             shutil.copytree(img_dir, english_img_dir)
 
+            print('succeed to translate. try to save translated file...')
             # 번역된 텍스트 저장
             with open(english_file_path, 'w', encoding='UTF-8') as file:
                 file.write(translated_text)
