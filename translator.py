@@ -58,5 +58,5 @@ def translate_files(files):
 # 스크립트 실행
 if __name__ == '__main__':
     import sys
-    files = sys.argv[1]
+    files = sys.argv[0]
     translate_files(files)
