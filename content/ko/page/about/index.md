@@ -4,4 +4,4 @@ layout: "about"
 slug: "about"
 ---
 
-test 1 2 3
+자기소개 테스트 페이지입니다. 반갑습니다
