@@ -35,19 +35,6 @@ jobs:
           python -u translator.py $changed_files
           rm changed_files.txt
 
-      - name: Commit Changes
-        run: |
-          git config --global user.email tkdgns0917@gmail.com
-          git config --global user.name sangho0n_remote
-          git add .
-          git diff-index --quiet HEAD || git commit -m "Add new files transalted by OpenAI"
-          git submodule update --recursive
-      
-      - name: Push Changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Setup hugo
         uses: peaceiris/actions-hugo@v2.6.0
         with:
