@@ -35,6 +35,7 @@ def translate(korean):
 # 새로 푸시된 파일의 경로를 받아 번역 작업 수행
 def translate_files(files):
     for file_path in files.split('\n'):
+        print('obtaining' + file_path)
         if file_path and file_path.startswith('content') and file_path.endswith('.md'):
             with open(file_path, 'r', encoding='UTF-8') as file:
                 korean_text = file.read()
