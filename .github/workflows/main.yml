@@ -29,6 +29,8 @@ jobs:
 
       - name: Commit Changes
         run: |
+          git config --global user.email tkdgns0917@gmail.com
+          git config --global user.name sangho0n_remote
           git add .
           git commit -m "Add new files transalted by OpenAI"
       
