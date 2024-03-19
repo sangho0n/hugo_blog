@@ -41,18 +41,14 @@ jobs:
           hugo-version: "0.123.8"
           extended: true
 
-      - name: Build and Deploy
+      - name: Build
         run: |
           hugo -t hugo-theme-stack
-          cd public
-          pwd
-          git config --global user.email tkdgns0917@gmail.com
-          git config --global user.name sangho0n_remote
-          git branch -a
-          git push origin master
-          cd en/post
-          ls
-          cd ..
-          cd ..
-          cd ko/post
-          ls
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: sangho0n/sangho0n.github.io
+          publish_branch: master  # default: gh-pages
+          publish_dir: ./public
