@@ -17,11 +17,11 @@ jobs:
           for file in "${{ github.event.commits[0].modified }}"; do
             changed_files="${changed_files}${file}"$'\n'
           done
-          echo "::set-output name=changed_files::${changed_files}"
+          echo "CHANGED_FILES=$changed_files" >> $GITHUB_ENV
       
       - name: Print Changed Files
         run: |
-          changed_files="${{ steps.get_changed_files.outputs.changed_files }}"
+          changed_files="${{ env.CHANGED_FILES }}"
           echo "Changed files: $changed_files"
       
       - name: Setup Python
