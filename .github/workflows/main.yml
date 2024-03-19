@@ -16,7 +16,7 @@ jobs:
             changed_files="${changed_files}${file}"$'\n'
             echo "Changed file: $file"
           done
-          echo "Changed files: $changed_files"
+          echo "$changed_files" > changed_files.txt
       
       - name: Setup Python
         uses: actions/setup-python@v2
@@ -28,8 +28,10 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           pip install openai=='1.14.1'
+          changed_files=$(cat changed_files.txt)
           echo "Changed files: $changed_files"
           python -u translator.py $changed_files
+          rm changed_files.txt
 
       - name: Commit Changes
         run: |
