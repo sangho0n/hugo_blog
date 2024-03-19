@@ -58,7 +58,7 @@ jobs:
       - name: Deploy
         run: |
           cd public
-          pwd
+          git status
           git branch
           git checkout main
           git add .
