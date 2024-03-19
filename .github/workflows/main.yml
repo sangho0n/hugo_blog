@@ -10,7 +10,11 @@ jobs:
       - name: Get Changed Files
         id: get_changed_files
         run: |
-          echo "::set-output name=changed_files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
+          changed_files=""
+          for file in "${{ github.event.commits[0].added + github.event.commits[0].modified }}"; do
+            changed_files="${changed_files}${file}"$'\n'
+          done
+          echo "::set-output name=changed_files::${changed_files}"
       
       - name: Print Changed Files
         run: |
