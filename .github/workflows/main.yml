@@ -49,6 +49,7 @@ jobs:
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: "0.97.0"
+          extened: true
 
       - name: Build
         run: hugo -t hugo-theme-stack
