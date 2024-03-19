@@ -11,7 +11,10 @@ jobs:
         id: get_changed_files
         run: |
           changed_files=""
-          for file in "${{ github.event.commits[0].added + github.event.commits[0].modified }}"; do
+          for file in "${{ github.event.commits[0].added }}"; do
+            changed_files="${changed_files}${file}"$'\n'
+          done
+          for file in "${{ github.event.commits[0].modified }}"; do
             changed_files="${changed_files}${file}"$'\n'
           done
           echo "::set-output name=changed_files::${changed_files}"
