@@ -41,11 +41,9 @@ jobs:
           hugo-version: "0.123.8"
           extended: true
 
-      - name: Build
-        run: hugo -t hugo-theme-stack
-
-      - name: Deploy
+      - name: Build and Deploy
         run: |
+          hugo -t hugo-theme-stack
           cd public
           pwd
           git config --global user.email tkdgns0917@gmail.com
