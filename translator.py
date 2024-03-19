@@ -35,7 +35,7 @@ def translate(korean):
 # 새로 푸시된 파일의 경로를 받아 번역 작업 수행
 def translate_files(files):
     for file_path in files.split('\n'):
-        if file_path and file_path.startwith('content'):
+        if file_path and file_path.startsWith('content'):
             with open(file_path, 'r', encoding='UTF-8') as file:
                 korean_text = file.read()
             translated_text = translate(korean_text)
