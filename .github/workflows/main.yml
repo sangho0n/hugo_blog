@@ -52,7 +52,7 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo -t hugo-theme-stack
+        run: hugo --minify
 
       - name: Deploy
         run: |
