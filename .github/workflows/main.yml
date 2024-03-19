@@ -2,7 +2,7 @@ name: CI
 on: push
 jobs:
   deploy:
-    runs-on: windows/amd64
+    runs-on: windows-latest
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
