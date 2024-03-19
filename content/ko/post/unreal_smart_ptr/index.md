@@ -6,7 +6,8 @@ image: img/unreal.svg
 tags: ["Unreal", "언리얼", "UE", "스마트포인터", "포인터"]
 categories: ["Unreal"]
 ---
-  
+
+
 [공식문서](https://docs.unrealengine.com/5.2/en-US/smart-pointers-in-unreal-engine/)를 바탕으로 이해한 내용을 작성한 글입니다. (의역 多)
 실제와는 다른 내용이 있을 수 있습니다. 지적해주시면 감사하겠습니다.
 

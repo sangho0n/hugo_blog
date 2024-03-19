@@ -14,7 +14,7 @@ openai.api_key = api_key
 
 def translate(korean):
     # Define prompt for the model
-    prompt_text = "Translate the following Korean text to English: " + korean
+    prompt_text = "Translate the following Korean text to English. Make sure there's not a space just before the --- triple dash at the end of the front matter.: " + korean
     """
     Sends the prompt to OpenAI API using the chat interface and gets the model's response.
     """
