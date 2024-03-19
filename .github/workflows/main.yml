@@ -1,0 +1,58 @@
+name: CI
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+        
+      - name: Get Changed Files
+        id: get_changed_files
+        run: |
+          echo "::set-output name=changed_files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
+      
+      - name: Print Changed Files
+        run: |
+          changed_files="${{ steps.get_changed_files.outputs.changed_files }}"
+          echo "Changed files: $changed_files"
+      
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12.0'
+      
+      - name: Run Python Script
+        run: |
+          python translator.py "${{ steps.get_changed_files.outputs.changed_files }}"
+
+      - name: Commit Changes
+        run: |
+          git add .
+          git commit -m "Add new files transalted by OpenAI"
+      
+      - name: Push Changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.97.0"
+
+      - name: Build
+        run: hugo -t hugo-theme-stack
+
+      - name: Deploy
+        run: |
+          cd public
+          git checkout main
+          git add .
+          msg="rebuilding site `date`"
+          if [ $# -eq 1 ]
+          then 
+            msg="$1"
+          fi
+          git commit -m "$msg"
+          git push origin main
