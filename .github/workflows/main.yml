@@ -58,6 +58,7 @@ jobs:
       - name: Deploy
         run: |
           cd public
+          git branch
           git checkout main
           git add .
           msg="rebuilding site `date`"
