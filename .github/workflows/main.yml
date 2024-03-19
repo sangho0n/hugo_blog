@@ -24,6 +24,7 @@ jobs:
       
       - name: Run Python Script
         run: |
+          pip install openai=='1.14.1'
           python translator.py "${{ steps.get_changed_files.outputs.changed_files }}"
 
       - name: Commit Changes
