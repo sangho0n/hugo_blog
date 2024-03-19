@@ -50,7 +50,7 @@ def translate_files(files):
             # 영어 img 디렉토리 경로 생성
             english_img_dir = os.path.join(os.path.dirname(english_file_path), 'img')
             # img 디렉토리의 내용을 영어 img 디렉토리로 복사
-            shutil.copy2(img_dir, english_img_dir, dirs_exist_ok=True)
+            shutil.copytree(img_dir, english_img_dir, dirs_exist_ok=True)
 
             print('succeed to translate. try to save translated file...')
             # 번역된 텍스트 저장
