@@ -63,5 +63,5 @@ if __name__ == '__main__':
     import sys
     if len(sys.argv) >= 2:
         print('there are/is some/a file(s) that needs to be converted!!')
-        files = sys.argv[1]
+        files = sys.argv[1:]
         translate_files(files)
