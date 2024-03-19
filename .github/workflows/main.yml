@@ -28,7 +28,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           pip install openai=='1.14.1'
-          python translator.py $changed_files
+          python -u translator.py $changed_files
 
       - name: Commit Changes
         run: |
