@@ -56,16 +56,12 @@ jobs:
         run: hugo -t hugo-theme-stack
 
       - name: Deploy
-        run: |
-          cd public
-          git status
-          git branch
-          git checkout main
-          git add .
-          msg="rebuilding site `date`"
-          if [ $# -eq 1 ]
-          then 
-            msg="$1"
-          fi
-          git commit -m "$msg"
-          git push origin main
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          external_repository: sangho0n/sangho0n.github.io
+          publish_dir: ./public
+          #   keep_files: true
+          user_name: sangho0n
+          user_email: tkdgns0917@gmail.com
+          publish_branch: main
