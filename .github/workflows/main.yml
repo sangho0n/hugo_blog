@@ -8,13 +8,10 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Get Changed Files
-        id: get_changed_files
-        run: |
+        uses: jitterbit/get-changed-files@v1
+      - run: |
           changed_files=""
-          for file in "${{ github.event.commits[0].added }}"; do
-            changed_files="${changed_files}${file}"$'\n'
-          done
-          for file in "${{ github.event.commits[0].modified }}"; do
+          for file in ${{ steps.files.outputs.all }}; do
             changed_files="${changed_files}${file}"$'\n'
           done
           echo "CHANGED_FILES=$changed_files" >> $GITHUB_ENV
