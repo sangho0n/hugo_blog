@@ -58,12 +58,7 @@ jobs:
         run: hugo -t hugo-theme-stack
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          external_repository: sangho0n/sangho0n.github.io
-          publish_dir: ./public
-          #   keep_files: true
-          user_name: sangho0n
-          user_email: tkdgns0917@gmail.com
-          publish_branch: main
+        run: |
+          git config --global user.email tkdgns0917@gmail.com
+          git config --global user.name sangho0n_remote
+          git push --recurse-submodules=on-demand
