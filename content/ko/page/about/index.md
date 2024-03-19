@@ -8,7 +8,7 @@ slug: "about"
 
 ## About Me
 
-작성중...
+작성중... 
 
 ## About This Blog
 이 블로그는 hugo 프레임워크와 hugo-theme-stack 테마를 바탕으로 제작되었습니다. 기본 언어는 한국어지만, 영어도 지원합니다.
