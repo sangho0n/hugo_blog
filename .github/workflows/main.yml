@@ -23,6 +23,8 @@ jobs:
           python-version: '3.12.0'
       
       - name: Run Python Script
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           pip install openai=='1.14.1'
           python translator.py "${{ steps.get_changed_files.outputs.changed_files }}"
