@@ -61,7 +61,7 @@ def translate_files(files):
 # 스크립트 실행
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) == 2:
+    if len(sys.argv) >= 2:
         print('there are/is some/a file(s) that needs to be converted!!')
         files = sys.argv[1]
         translate_files(files)
