@@ -52,3 +52,11 @@ jobs:
           external_repository: sangho0n/sangho0n.github.io
           publish_branch: main  # default: gh-pages
           publish_dir: ./public
+
+      - name: Commit added files
+        uses: EndBug/add-and-commit@v9.1.4
+        with:
+        author_name: Author Name
+        author_email: mail@example.com
+        push: true
+        
