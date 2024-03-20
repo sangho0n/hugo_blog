@@ -56,7 +56,7 @@ jobs:
       - name: Commit added files
         uses: EndBug/add-and-commit@v9.1.4
         with:
-        author_name: sangho0n
-        author_email: tkdgns0917@gmail.com
-        push: true
+          author_name: sangho0n
+          author_email: tkdgns0917@gmail.com
+          push: true
         
