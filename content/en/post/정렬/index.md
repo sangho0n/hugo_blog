@@ -1,17 +1,16 @@
 ---
-title: "Simple Summary of Sorting Algorithms"
+title: "Summary of Sorting Algorithms"
 date: 2024-02-26T11:49:35+09:00
 image: img/algorithm.png
- 
-tags: ["Tech Interview", "Algorithm", "sort", "cs", "interview"]
-categories: ["Algorithm"]
+tags: ["Technical Interview", "Algorithms", "sort", "cs", "interview"]
+categories: ["Algorithms"]
 ---
 
-When selecting a sorting algorithm, not only should you consider the time complexity in best, average, and worst conditions, but also factors such as memory usage and stability.
+Sorting algorithms should be chosen based on criteria such as time complexity in the best, average, and worst cases, as well as memory usage and stability.
 
-The speed of a comparison-based sorting algorithm in the worst case condition cannot be faster than ```O(nlog(n))```.
+The speed of sorting algorithms based on comparisons cannot be faster than ```O(nlog(n))``` in the worst case.
 
-# List of Sorting Algorithms in This Post
+# List of Sorting Algorithms Covered in this Post
 
 - Selection Sort
 - Insertion Sort
@@ -23,108 +22,108 @@ The speed of a comparison-based sorting algorithm in the worst case condition ca
 
 ## Selection Sort
 
-One of the simplest algorithms. Suitable for environments where copying operations are slow due to being an in-place algorithm.
+One of the simplest algorithms. Since it is an in-place algorithm, it is suitable for environments where copying operations are very slow.
 
-It scans the array once at each step, selects the minimum (or maximum) value among the unsorted elements and swaps it with the first element.
+At each step, the array is scanned once, selecting the minimum (maximum) value among the unsorted elements and swapping it with the front element.
 
-After each step, it reduces the number of unsorted elements by 1 and repeats the same operation for the reduced array.
+After each step, the number of unsorted elements is reduced by one, and the same operation is repeated for the reduced array.
 
 In-Place. Unstable.
 
 ### Time Complexity
-| Case |       Complexity        |
-|:----:|:----------------------:|
-| Best |       O(n<sup>2</sup>)       |
-| Worst | O(n<sup>2</sup>) |
-| Average |        O(n<sup>2</sup>)        |
-
+| Case | Complexity |
+|:----:|:--------:|
+| Best | O(n^2)   |
+| Worst | O(n^2) |
+| Average | O(n^2) |
 
 ## Insertion Sort
 
-Divides one array into a sorted and an unsorted array, increasing the size of the sorted array step by step and decreasing the size of the unsorted array.
+Divides one array into a sorted array and an unsorted array, increasing the size of the sorted array step by step and decreasing the size of the unsorted array.
 
-It takes the front element of the unsorted array and compares it sequentially with the elements of the sorted array until it finds the right position to insert.
+An unsorted array's front element is compared sequentially with the elements of the sorted array and inserted at the appropriate position.
 
 In-Place. Stable.
+
 ### Time Complexity
-| Case       |  Complexity        |
-|:----------:|:------------------:|
-| Best (Already sorted) |       O(n)       |
-| Worst        | O(n<sup>2</sup>) |
-| Average |        O(n<sup>2</sup>)        |
+| Case | Complexity |
+|:----:|:--------:|
+| Best (Already sorted) | O(n) |
+| Worst | O(n^2) |
+| Average | O(n^2) |
 
 ## Bubble Sort
 
-At each step, it linearly scans the array and performs comparisons and swaps with adjacent elements similar to bubbles rising in a cylinder.
+At each step, the array is linearly searched, comparing adjacent elements and performing swap operations.
 
-In-Place. Stable.
+In-place. Stable.
 
 ### Time Complexity
-| Case       |       Complexity        |
-|:----------:|:----------------------:|
-| Best       |       O(n<sup>2</sup>)       |
-| Worst     | O(n<sup>2</sup>) |
-| Average |        O(n<sup>2</sup>)        |
+| Case | Complexity |
+|:----:|:--------:|
+| Best | O(n^2) |
+| Worst | O(n^2) |
+| Average | O(n^2) |
 
 ## Heap Sort
 
-A method of sorting using a Max Heap or Min Heap. It is possible to use a separate heap or transform the given array into a heap (In-Place).
+A method of sorting using a max heap or min heap. It is possible to use a separate heap or make the given array a heap (In-place).
 
-The operations of inserting/deleting elements in a heap are ```O(logn)``` (height of the heap, a complete binary tree), and performing these operations for the number of elements (twice; making the heap + removing one element from the heap) results in an overall time complexity of ```O(nlogn)```.
+The operations of inserting/deleting elements in the heap are O(logn) (height of the heap), and these operations are repeated for the number of elements (twice; making a Heap + pulling elements one by one), so the total time complexity is O(nlogn).
 
 In-Place. Unstable.
 
 ### Time Complexity
-| Case |         Complexity        |
-|:----:|:------------------------:|
-| Best   |      O(nlogn)       |
-| Worst |      O(nlogn)       |
-| Average |      O(nlogn)       |
+| Case | Complexity |
+|:----:|:--------:|
+| Best | O(nlogn) |
+| Worst | O(nlogn) |
+| Average | O(nlogn) |
 
 ## Quick Sort
 
-Divides the array into smaller arrays based on a pivot value, with smaller values on the left and larger values on the right.
+Divides the array based on the pivot value into smaller values on the left and larger values on the right.
 
-For each divided array, Quick Sort is performed recursively until it cannot be divided further.
+For each divided array, Quick Sort is performed iteratively until it cannot be divided further.
 
-If the pivot is optimally selected at each moment, the given array is precisely halved each time. The worst case is when the pivot is always selected as the minimum value (or maximum value).
+If the pivot is optimally selected at every moment, the given array is precisely divided in half every time. The worst case occurs when the pivot is consistently selected as the minimum (or maximum) value.
 
 In-Place. Unstable.
 
 ### Time Complexity
-| Case |       Complexity        |
-|:----:|:----------------------:|
-| Best   |     O(nlogn)     |
-| Worst | O(n<sup>2</sup>) |
+| Case | Complexity |
+|:----:|:--------:|
+| Best | O(nlogn) |
+| Worst | O(n^2) |
 | Average | O(nlogn) |
 
 ## Merge Sort
 
-One of the divide-and-conquer algorithms. It divides the array in half and performs Merge Sort on each divided array. Then, it merges the sorted arrays together to obtain one large sorted array.
+One of the divide and conquer algorithms. The array is divided in half, and Merge Sort is performed on each divided array. Then, the sorted arrays are merged to obtain one large sorted array.
 
-Unlike other sorting algorithms, it has a space complexity of O(n) even in the best case.
+Unlike other sorting algorithms, it has O(n) level of space complexity even in the best case.
 
-To optimize the sorting of divided arrays, Merge Sort can be mixed with other sorting algorithms (such as Insertion Sort) based on a specific size (in this case, it may not be stable).
+For the purpose of optimizing the divided array, you can mix Merge Sort with another sorting algorithm (such as Insertion Sort) that is not Merge Sort (this may result in instability).
 
-Not In-Place. Stable.
+not In-Place. Stable.
 
 ### Time Complexity
-| Case |         Complexity         |
-|:----:|:------------------------:|
-| Best   |      O(nlogn)       |
-| Worst |      O(nlogn)       |
-| Average |      O(nlogn)       |
+| Case | Complexity |
+|:----:|:--------:|
+| Best | O(nlogn) |
+| Worst | O(nlogn) |
+| Average | O(nlogn) |
 
 ## Radix Sort
 
-Unlike the previous algorithms, a sorting algorithm that performs without comparisons. It sorts based on digits, so the digits must be able to be sorted lexicographically.
+Unlike the previous algorithms, a sorting algorithm that operates without comparisons. Since the numbers are sorted based on digits, the digits must be sortable in lexicographical order.
 
-A type of bucket sort.
+A kind of bucket sort.
 
-Not In-Place. Stable
+not In-Place. Stable
 
 ### Time Complexity
 
-Let n be the number of elements to be sorted, d be the maximum number of digits, and k be the number of buckets (for numbers, it is 10 as the digits are 0 to 9).
+Let n be the number of digits to be sorted, d be the maximum number of digits, and k be the number of buckets (0~9 for numbers).
 
-Both best, worst, and average cases have a complexity of O(d(n + k)).
+Best, worst, and average cases are all O(d(n + k))
