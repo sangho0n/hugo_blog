@@ -7,7 +7,7 @@ tags: ["Unreal", "언리얼", "UE", "Enhanced Input", "향상된", "UE5"]
 categories: ["Unreal"]
 ---
 
- 
+
 ![image.png](img%2Fpost%2FEnhancedInput%2Fimage.png)
 
 언리얼 엔진 5버전부터는 기존의 입력 맵핑 시스템이 deprecated 되었다. 이를 대체하는 Enhanced Input에 대해 알아보도록 하자.
