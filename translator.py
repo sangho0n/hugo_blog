@@ -14,7 +14,22 @@ openai.api_key = api_key
 
 def translate(korean):
     # Define prompt for the model
-    prompt_text = "Translate the following Korean text to English. Make sure there's not a space just before the --- triple dash at the end of the front matter.: " + korean
+    prompt_text = '''I'm trying to translate the .md file using the OpenAI API. At the very beginning of the md file, there is a metadata header like this:
+                   
+                   ---
+                   title: "Unreal GAS Overview"
+                   date: 2024-02-14T13:53:44+09:00
+                   image: img/unreal.svg
+                   
+                   tags: ["Unreal", "언리얼", "UE", "GAS", "Ability"]
+                   categories: ["Unreal"]
+                   series: ["Gameplay Ability System (GAS)"]
+                   ---
+                   
+                   Please translate only the values of title, tags, categories, and series into English without altering the structure. If not, errors like the following may occur:
+                   failed to unmarshal YAML: yaml: line 10: could not find expected ':'
+                   
+                   After this, a Korean document written in Markdown including header will be provided. Please translate its header and body into English : ''' + korean
     """
     Sends the prompt to OpenAI API using the chat interface and gets the model's response.
     """
