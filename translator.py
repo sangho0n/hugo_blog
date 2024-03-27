@@ -27,7 +27,8 @@ def translate(korean):
                    ---
                    
                    Please translate only the values of 'title', 'tags', 'categories', and 'series' into English without altering the structure.
-                   After header, a Korean document body written in Markdown including header will be provided. Please translate its header and body into English : 
+                   After header, a Korean document body written in Markdown including header will be provided. Please translate its header and body into English.
+                   Now, translate this following my instructions above : 
                    ''' + korean
     """
     Sends the prompt to OpenAI API using the chat interface and gets the model's response.
