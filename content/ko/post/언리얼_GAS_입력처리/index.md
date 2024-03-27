@@ -140,7 +140,7 @@ struct GAMEPLAYABILITIES_API FGameplayAbilitySpec : public FFastArraySerializerI
 - **FGameplayAbilitySpec** : 능력 자체를 의미하는 구조체. 능력의 상태, 발동횟수 등과 같은 정보를 담고있다.
 - **FGameplayAbilitySpecHandle** : 능력을 고유하게 식별하기 위해 사용되는 구조체. GameplayAbility의 타입마다 하나씩 생성된다.
 
-![handle.png](img/handle.png)
+![handle.png](img/post/gas/handle.png)
 
 핸들의 값은 스펙 생성시 자동으로 1씩 증가한다
 ```c++
@@ -292,7 +292,7 @@ namespace EGameplayAbilityInstancingPolicy
 
 이번에는 공격 애니메이션 몽타주를 Gameplay Task를 이용해 재생할 것이다. GAS 플러그인은 아래와 같은 여러 태스크들을 기본으로 제공한다.
 
-![ability_task.png](img/ability_task.png)
+![ability_task.png](img/post/gas/ability_task.png)
 
 애니메이션 몽타주를 재생하려면 UAbilityTask_PlayMontageAndWait를 이용하면 된다.
 다음과 같은 패턴에 맞춰, 어빌리티 태스크를 이용해 애니메이션을 재생시켜볼 것이다.
@@ -356,11 +356,11 @@ void UABGA_Attack::OnActionInterrupted()
 블루프린트에서 게임플레이 태그를 부여하여 소스코드 빌드 없이도 동일한 역할이 수행되도록 만들어보겠다. 아래는 그 과정을 나열한 것이다.
 
 - 게임플레이 어빌리티 블루프린트 생성
-![bp_tags.png](img/bp_tags.png)
+![bp_tags.png](img/post/gas/bp_tags.png)
 
 
 - 캐릭터에서 어빌리티 클래스를 cpp에서 블루프린트로 변경
-![bp_character.png](img/bp_character.png)
+![bp_character.png](img/post/gas/bp_character.png)
 
 - cpp을 통해 어빌리티 시스템 컴포넌트가 초기화될 때 콘솔커맨드 ```showdebug abilitysystem``` 호출
 ```c++
@@ -380,6 +380,6 @@ void AABGASCharacterPlayer::PossessedBy(AController* NewController)
 ## 최종화면
 <center>
 
-![debug.gif](img/debug.gif)
+![debug.gif](img/post/gas/debug.gif)
 
 </center>
