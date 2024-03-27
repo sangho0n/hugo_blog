@@ -8,28 +8,29 @@ categories: ["Unreal"]
 series: ["Gameplay Ability System (GAS)"]
 ---
 
-[This content is based on lectures by Lee Deok-woo](https://www.inflearn.com/course/%EC%9D%B4%EB%93%9D%EC%9A%B0-%EC%96%B8%EB%A6%AC%EC%96%BC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-part-4) and [documents compiled by other developers](https://github.com/tranek/GASDocumentation).
+[Based on the lectures by Lee Deukwoo](https://www.inflearn.com/course/%EC%9D%B4%EB%93%9D%EC%9A%B0-%EC%96%B8%EB%A6%AC%EC%96%BC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-part-4)
+and [document compiled by other developers](https://github.com/tranek/GASDocumentation).
 
-For detailed and accurate information, please refer to the above links.
+For detailed and accurate information, please refer to the links above.
 
 Series
-- [Unreal GAS Overview](/p/언리얼-gas-개요/) <- Current Post
-- [Starting Unreal GAS](/p/언리얼-gas-시작/)
-- [Handling Unreal GAS Inputs](../언리얼-gas-입력처리/)
+- [Unreal GAS Overview](/p/unreal-gas-overview/) <- Current post
+- [Unreal GAS Getting Started](/p/unreal-gas-getting-started/)
+- [Unreal GAS Input Handling](../unreal-gas-input-handling/)
 
 ---------------
 
-## Gameplay Ability System 
-- A framework that provides actor abilities and interaction among actors through abilities
+## Gameplay Ability System
+- A framework that provides actor abilities and interactions between actors through abilities
 - Advantages
-  - Flexibility, scalability: Easily used in various and complex game development scenarios
-  - Modular system: Minimizes dependencies for each functionality
+  - Flexibility, scalability: Easily utilized for diverse and complex game development
+  - Modular system: Minimizes dependency on each function
   - Network support
   - Data-driven design
-  - Completion: Games like Fortnite are already utilizing it
+  - Completeness: Games like Fortnite already utilize it
 - Disadvantages
   - Learning curve
-  - Overhead in small projects
+  - Overheads in small-scale projects
 
 > Suitable for creating large-scale RPGs and multiplayer games
 
@@ -37,25 +38,25 @@ Series
 
 ![gas1.png](img/post/gas/gas1.png)
 
-- Gameplay Ability: Implementation of character abilities based on cost and optional cooldown
-- Attributes: Manipulation of actor characteristics
-- Gameplay Effects: Changes in actor state based on ability activation
-- Gameplay Tags: Tagging actors
+- Gameplay Ability: Implements character abilities based on cost and cooldown (optional)
+- Attributes: Manipulate actor characteristics
+- Gameplay Effects: Change actor states based on ability activation
+- Gameplay Tags: Assign tags to actors
 - Gameplay Cues: Visual effects
-- Replication for all the above components
+- Replication for all of the above
 
 ![gas1.png](img/post/gas/gas2.png)
 
 ## GAS in Multiplayer Games
-The GAS plugin supports client-side prediction, allowing for the activation of abilities and effects without server approval.
+The GAS plugin supports client-side prediction, allowing abilities and effects to be applied without server approval.
 
 - Ability activation
-- Playing animation montages
-- Modifying attributes
-- Tagging actors
-- Executing gameplay cues
-- Manipulating movement through RootMotionSource functions linked to CharacterMovementComponent
+- Animation montage playback
+- Attribute modification
+- Gameplay tag assignment
+- Execution of gameplay cues
+- Movement control through CharacterMovementComponent and RootMotionSource functions
 
 ## Blueprint vs C++
 
-GAS should be implemented in C++, but implementing GameplayAbilities and GameplayEffects can be done in Blueprint.
+While GAS should be implemented in C++, GameplayAbilities and GameplayEffects can be implemented in Blueprint.
