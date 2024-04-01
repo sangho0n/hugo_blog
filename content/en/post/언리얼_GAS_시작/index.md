@@ -8,30 +8,30 @@ categories: ["Unreal"]
 series: ["Gameplay Ability System (GAS)"]
 ---
 
+[Based on lectures by Lee Duk-Woo](https://www.inflearn.com/course/%EC%9D%B4%EB%93%9D%EC%9A%B0-%EC%96%B8%EB%A6%AC%EC%96%BC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-part-4)
+and [documentation compiled by another developer](https://github.com/tranek/GASDocumentation).
 
-[Based on lectures by Lee Geun-woo](https://www.inflearn.com/course/lee-geunwoo-unreal-programming-part-4) 
-and [documents compiled by other developers](https://github.com/tranek/GASDocumentation).
-
-For detailed and accurate information, please refer to the links above.
+Please refer to the links above for detailed and accurate information.
 
 Series
-- [Unreal GAS Overview](/p/unreal-gas-overview/)
-- [Unreal GAS Start](/p/unreal-gas-start/) <- Current Post
-- [Unreal GAS Input Handling](../unreal-gas-input-handling/)
+- [Unreal GAS Overview](/p/언리얼-gas-개요/)
+- [Unreal GAS Start](/p/언리얼-gas-시작/) <- Current Post
+- [Unreal GAS Input Processing](../언리얼-gas-입력처리/)
+- [Unreal GAS Implementing Continuous Attacks](../언리얼-gas-연속공격/)
 
----------------
+---
 
-In this post, we will explore the implementation of actor movement through three methods to understand the usage of the GAS framework,
-and examine the differences between each method.
+In this post, I will explore the usage of the GAS framework by implementing actor movement through three different methods, understanding how to use the GAS framework, and examining the differences between each method.
 
 - Actor Function Extension
-- Using the Game Ability System
-- Using Game Ability System with Gameplay Tags
+- Using Game Ability System
+- Using Game Ability System + Gameplay Tag
 
-For the actor, a fountain is used, and the movement is designed based on a 3-second stationary rotation/stop as a reference.
+For the actor, a fountain with movement based on a 3-second stationary rotation/stop was created.
 
 ## Actor Function Extension
-Implementing movement using URotatingMovementComponent directly without the GAS framework.
+Implemented directly using URotatingMovementComponent without the GAS framework.
+
 ```c++
 UCLASS()
 class ARENABATTLEGAS_API AABGASFountain : public AABFountain
@@ -75,33 +75,35 @@ void AABGASFountain::TimerAction()
 		RotatingMovement->Deactivate();
 	}
 }
-
 ```
 
-## Using the Game Ability System
-To implement movement using the GAS framework, you need to understand the following two concepts first:
+## Using Game Ability System
+To implement movement using the GAS framework, you need to understand two key concepts:
 - Ability System Component
 - Game Ability
+
 ### Ability System Component
-- A component that manages the Gameplay Ability System
+- Manages the Gameplay Ability System for the game
 - Only one can be attached per actor
-- Actors can invoke Gameplay Abilities through this component
-- Enables interaction between actors with this component through the Game Ability System
+- Allows actors to trigger Gameplay Abilities through it
+- Enables interaction between actors with this component in the Game Ability System
 
 ### Game Ability
-- An action registered in the Ability System Component that can be activated
-- Activation Process
-  - Registered in Ability System Component: AbilitySystemComponent->GiveAbility()
-  - Activating the ability: AbilitySystemComponent->TryActivateAbility()
-  - Within the activated ability, requirements are implemented using SpecHandle, ActorInfo, ActivationInfo
-- Key Methods
+- An action that is registered with the Ability System Component to be triggered
+- Activation process:
+  - Register with Ability System Component: AbilitySystemComponent->GiveAbility()
+  - Activate the action: AbilitySystemComponent->TryActivateAbility()
+  - Inside the activated ability, utilize SpecHandle, ActorInfo, ActivationInfo to implement requirements
+- Key methods:
   - CanActivateAbility
   - **ActivateAbility**
   - **CancelAbility**
   - EndAbility
 
-Implementing the same movement as before using the two above concepts:
+Using the above concepts, the same movement can be implemented as follows.
+
 1. Create an ability class by inheriting from GameplayAbility
+
 ```c++
 UCLASS()
 class ARENABATTLEGAS_API UABGA_Rotate : public UGameplayAbility
@@ -130,10 +132,12 @@ void UABGA_Rotate::CancelAbility(const FGameplayAbilitySpecHandle Handle, const 
 	const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateCancelAbility)
 {
 	Super::CancelAbility(Handle, ActorInfo, ActivationInfo, bReplicateCancelAbility);
-    // omitted
+    // Omitted
 }
 ```
+
 2. Attach components to the actor and implement the interface
+
 ```c++
 UCLASS()
 class ARENABATTLEGAS_API AABGASFountain : public AABFountain, public IAbilitySystemInterface
@@ -160,7 +164,9 @@ UAbilitySystemComponent* AABGASFountain::GetAbilitySystemComponent() const
 	return AbilitySystemComponent;
 }
 ```
-3. Register and activate the ability on the attached component
+
+3. Register and activate abilities on the attached components
+
 ```c++
 
 void AABGASFountain::PostInitializeComponents()
@@ -188,94 +194,21 @@ void AABGASFountain::TimerAction()
 }
 ```
 
-## Using Game Ability System + Gameplay Tags
+## Using Game Ability System + Gameplay Tag
 
-When using the Game Ability System without Gameplay Tags, the advantages of the GAS framework are not fully utilized.
-Let's first understand what Gameplay Tags are.
+When using Gameplay Tags along with the Game Ability System, the advantages of the GAS framework are maximized.
+Gameplay Tags allow for efficient categorization and tracking of states, reducing dependency between objects and enhancing reusability.
 
-### Gameplay Tags
+---
 
-FGameplayTag represents a name registered in a hierarchical form like ```Parent.Child.Grandchild...```. These tags are registered by the GameplayTagManager.
-By using these tags, classes can be classified and states can be effectively tracked.
+This post explored implementing a rotating fountain through three different methods:
+1. Actor function extension
+2. GAS: Creating a new class (ability) to separate functionality from the actor
+3. GAS + Gameplay Tags: Using tags to remove dependencies between actors and abilities
 
-Instead of using bool values or enums to track states, the presence of Gameplay Tags in an object can replace conditions based on values to determine the state.
-
-Furthermore, managing multiple tags is better done using FGameplayTagContainer than Tarray<FGameplayTag>. This is because not only can you receive tags in array form at any time,
-but also various methods make tag management easier.
-
-The GAS framework is very friendly with Gameplay Tags. As the UAbilitySystemComponent implements IGameplayTagAssetInterface, you can directly assign tags to the Ability System Component,
-and also manage various states within GameplayAbility using tag containers such as CancelAbilitiesWithTag, BlockAbilitiesWithTag, and ActivationOwnedTags.
-
-By utilizing Gameplay Tags, you can implement the same requirements as follows:
-
-1. Create tags
-```shell
-// DefaultGameplayTags.ini
-[/Script/GameplayTags.GameplayTagsSettings]
-//...
-+GameplayTagList=(Tag="Actor.Action.Rotate",DevComment="")
-+GameplayTagList=(Tag="Actor.State.IsRotating",DevComment="")
-```
-2. Define macros for easy retrieval of tags
-```c++
-// ABGameplayTag.h
-#define ABTAG_ACTOR_ROTATE FGameplayTag::RequestGameplayTag(FName("Actor.Action.Rotate"))
-#define ABTAG_ACTOR_ISROTATING FGameplayTag::RequestGameplayTag(FName("Actor.State.IsRotating"))
-```
-3. Register tags on the Gameplay Ability
-```c++
-UABGA_Rotate::UABGA_Rotate()
-{
-	AbilityTags.AddTag(ABTAG_ACTOR_ROTATE);
-	// Tag planted upon activation
-	ActivationOwnedTags.AddTag(ABTAG_ACTOR_ISROTATING);
-}
-```
-4. Register and activate abilities based on tags
-```c++
-// ABGASFountain.h
-	UPROPERTY(EditAnywhere, Category=GAS)
-	TArray<TSubclassOf<UGameplayAbility>> Abilities;
-
-// Implementation
-void AABGASFountain::PostInitializeComponents()
-{
-	Super::PostInitializeComponents();
-	
-	AbilitySystemComponent->InitAbilityActorInfo(this, this);
-	for (auto Element : Abilities)
-	{
-		FGameplayAbilitySpec Spec(Element);
-		AbilitySystemComponent->GiveAbility(Spec);
-	}
-}
-
-void AABGASFountain::TimerAction()
-{
-	FGameplayTagContainer TargetTag(ABTAG_ACTOR_ROTATE);
-
-	if(!AbilitySystemComponent->HasMatchingGameplayTag(ABTAG_ACTOR_ISROTATING))
-	{
-		AbilitySystemComponent->TryActivateAbilitiesByTag(TargetTag);
-	}
-	else
-	{
-		AbilitySystemComponent->CancelAbilities(&TargetTag);
-	}
-}
-```
-After creating a blueprint class that inherits from the AABGASFountain cpp class, simply add the appropriate activity to the Abilities in the Details panel.
-
-## Summary
-Rotating fountain implemented through three methods:
-   1. Actor function extension
-   2. GAS: Creating a new class (ability) to separate functionality from the actor
-   3. GAS + Gameplay Tags: Removing dependencies between the actor and ability
-
-Benefits of using GAS and Gameplay Tags together:
-1. Minimization of actor roles
-2. Dependency removal. Easy maintenance and higher reusability
-3. Scalability + Ease of collaboration with other job roles
-
+Advantages of using GAS and Gameplay Tags together:
+1. Minimize the actor's role
+2. Reduce dependencies, making maintenance easier and increasing reusability
+3. Easy collaboration and scalability with other classes
 
 ![RotatingFountain.gif](img/post/gas/RotatingFountain.gif)
