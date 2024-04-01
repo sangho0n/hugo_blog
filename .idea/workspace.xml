@@ -9,12 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac1ea76f-eb81-480f-bc8c-4666fa0049fa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/ko/post/언리얼_GAS_개요/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/ko/post/언리얼_GAS_개요/index.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/ko/post/언리얼_GAS_시작/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/ko/post/언리얼_GAS_시작/index.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/ko/post/언리얼_GAS_입력처리/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/ko/post/언리얼_GAS_입력처리/index.md" afterDir="false" />
-    </list>
+    <list default="true" id="ac1ea76f-eb81-480f-bc8c-4666fa0049fa" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,7 +74,7 @@
       <updated>1711459133167</updated>
       <workItem from="1711459134349" duration="2369000" />
       <workItem from="1711504336801" duration="15025000" />
-      <workItem from="1711949080633" duration="13435000" />
+      <workItem from="1711949080633" duration="13959000" />
     </task>
     <servers />
   </component>
