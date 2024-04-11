@@ -8,26 +8,34 @@ categories: ["Unreal"]
 series: ["Gameplay Ability System (GAS)"]
 ---
 
-[Based on the lecture by Lee Duk-woo](https://www.inflearn.com/course/%EC%9D%B4%EB%93%9D%EC%9A%B0-%EC%96%B8%EB%A6%AC%EC%96%BC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-part-4) 
-and [documentation compiled by other developers](https://github.com/tranek/GASDocumentation).
+This post is a summary based on [Lee Deukwoo's lecture](https://www.inflearn.com/course/%EC%9D%B4%EB%93%9D%EC%9A%B0-%EC%96%B8%EB%A6%AC%EC%96%BC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-part-4) and [documentation prepared by another developer](https://github.com/tranek/GASDocumentation).
 
-For detailed and accurate information, please refer to the links above.
+For detailed and accurate information, please refer to the above links.
 
-Series:
-- [Unreal GAS Overview](../unreal-gas-overview/)
-- [Unreal GAS Start](../unreal-gas-start/)
-- [Unreal GAS Input Handling](../unreal-gas-input-handling/)
-- [Unreal GAS Continuous Attack Implementation](../unreal-gas-continuous-attack/) <- Current Post
+## Series
+### Basics of GAS
+- [Unreal GAS Overview](../Unreal-GAS-Overview/)
+- [Getting Started with Unreal GAS](../Unreal-GAS-Getting-Started/)
+### Basic Character Creation with GAS
+- [Handling Input in Unreal GAS](../Unreal-GAS-Input-Handling/)
+- [Implementing Continuous Attacks in Unreal GAS](../Unreal-GAS-Continuous-Attack-Implementation/) <- Current Post
+- [Implementing Attack Judgment System in Unreal GAS](../Unreal-GAS-Attack-Judgment-System/)
+### Attributes and Gameplay Effects
+- Unreal GAS Character Attributes
+- Unreal GAS Gameplay Effects
+- Interfacing Attributes and UI in Unreal GAS
+### Utilizing GAS
+- Implementing Item Crate in Unreal GAS
+- Implementing Area of Effect Skill in Unreal GAS
 
----------------
+---
 
-In this post, we'll explore how the sections registered in the animation montage can be played in GAS and implemented. 
-Additionally, we'll create a custom Task and examine how to use Ability Task in blueprints.
+In this post, we will explore how animation sections registered in animation montages can be played in GAS and create a custom Task while learning how to use Ability Tasks in blueprints.
 
-## Continuous Attack Implementation
+## Implementing Continuous Attack
 
-In the previous post, we represented the attack movement by playing the first section of the animation montage using UAbilityTask_PlayMontageAndWait.
-The Gameplay Ability class in GAS already defines a method that allows you to change the animation to be played by the section's name as follows:
+In the previous post, we represented the attack motion by playing the first section of the animation montage using UAbilityTask_PlayMontageAndWait.
+The Gameplay Ability class in GAS already defines a method that allows changing the animation to be played based on the section's name.
 
 ```c++
 void UGameplayAbility::MontageJumpToSection(FName SectionName)
@@ -44,17 +52,18 @@ void UGameplayAbility::MontageJumpToSection(FName SectionName)
 
 Let's implement continuous attacks using this method.
 
---------
+---
+
 ### Naive Approach
 
-The most basic mechanism for implementing continuous attacks is as follows:
-- Register the animation montage to the animation instance
-- Set AnimNotify (NextComboCheck) to check if it can move to the next section at the end of each montage section
-- If an attack request is received while the attack has not ended, set the flag for transitioning to the next section to true
-- Check the flag in AnimNotify and move to the next section using the Montage_JumpToSection method as per conditions
+The most basic mechanism to implement continuous attacks is as follows:
+- Register the animation montage in the animation instance
+- Set an AnimNotify (NextComboCheck) to verify at the end of each animation montage section if it can transition to the next section
+- When an attack request is received before the attack ends, set a flag to proceed to the next section
+- Check the flag in AnimNotify and transition to the next section using the Montage_JumpToSection method
 
 ```c++
-// Called by the attack input
+// Invoked upon attack input
 void AMyCharacter::AttackNonEquip_Multicast_Implementation()
 {
 	auto animInstance = Cast<UMSBAnimInstance>(GetMesh()->GetAnimInstance());
@@ -69,7 +78,7 @@ void AMyCharacter::AttackNonEquip_Multicast_Implementation()
 	}
 }
 
-// Play the continuous attack animation montage
+// Play continuous attack animation montage
 void UMyAnimInstance::PlayComboAnim()
 {
 	CurrentCombo = 1;
@@ -101,14 +110,14 @@ void UMSBAnimInstance::JumpToNextSection()
 }
 ```
 
-------------
+---
 
 ### Using GAS
 
-When implementing the same role in code, consider the following:
-- Utilize GAS
-- Separate Montage Section data into separate assets for easier management (allows for quick development without recompiling even if the number of continuous attacks, playback speed, etc., changes)
-- Use Timer instead of AnimNotify
+We will now implement the equivalent code keeping in mind the following:
+- Use of GAS
+- Separate and manage Montage Section data as assets (enables rapid development without needing to recompile code even if the total number of attacks, playback speed, etc., change)
+- Use of Timer instead of AnimNotify
 
 Primary Data Asset class used:
 
@@ -122,7 +131,7 @@ void UABGA_Attack::ActivateAbility(const FGameplayAbilitySpecHandle Handle, cons
 
     auto Character = CastChecked<AABCharacterBase>(ActorInfo->AvatarActor.Get());
     Character->GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_None);
-    CurrentComboData = Character->GetComboActionData(); // Obtain the ABA_ComboAttack defined above
+    CurrentComboData = Character->GetComboActionData(); // Retrieved ABA_ComboAttack defined earlier
     
     UAbilityTask_PlayMontageAndWait* PlayerAttackTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
        this,
@@ -141,6 +150,8 @@ void UABGA_Attack::ActivateAbility(const FGameplayAbilitySpecHandle Handle, cons
 void UABGA_Attack::InputPressed(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo,
     const FGameplayAbilityActivationInfo ActivationInfo)
 {
+    //Super::InputPressed(Handle, ActorInfo, ActivationInfo);
+
     if(!ComboTimerHandle.IsValid())
     {
        HasNextComboInputOn = false;
@@ -185,17 +196,18 @@ void UABGA_Attack::CheckComboInput()
 
 ## Custom Ability Task
 
-In the previous post, we implemented jumping using the provided Jump ability. 
-It was difficult to track the state as desired, and directly forcing the character to jump without a task made it challenging to address additional requirements.
-Let's create a new Jump ability and task, and learn how to restrict the activation of different abilities based on states.
+In the previous post, we implemented jumping using the provided Jump ability, but handling the state transitions as needed was not straightforward, and directly jumping the character from the ability made it challenging to adapt to additional requirements.
+Let's create a new Jump ability and task to learn how to restrict the activation of different abilities based on the character's state.
 
-### Implementation (cpp)
+### Implementation (C++)
 
-Following the **custom ability creation pattern** mentioned earlier, we shall create the Task:
-><p>1. Declare a delegate that is broadcasted when the task is complete in the Ability Task<br>2. Declare a callback function to be bound to the delegate and bind it in the Ability<br>3. Use the ReadyForActivation method to enable the task to be executed after binding<br>4. End the ability in the method called by the delegate</p>
+The custom Task implementation follows the **Custom Ability Task Creation Pattern** we mentioned earlier.
+- Declare a delegate that broadcasts when the Task has completed
+- Declare a callback function to be bound to this delegate in the Ability
+- Use the ReadyForActivation method to make the Task executable
+- End the Ability in the method called by the delegate
 
-In this case, the completion of the jump task is set to the landing of the jump animation, i.e., when the character's feet touch the ground.
-
+In this case, the Jump Task ends when the character lands, meaning when the character's feet touch the ground.
 ```c++
 // Task Implementation
 void UABAT_JumpAndWaitForLanding::Activate()
@@ -235,10 +247,10 @@ void UABGA_Jump::ActivateAbility(const FGameplayAbilitySpecHandle Handle, const 
 {
     Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 
-    // Implement jump using the custom ability task
+    // Implement jump using custom ability task
     auto JumpAndWaitForLandingTask = UAbilityTask::NewAbilityTask<UABAT_JumpAndWaitForLanding>(this);
     JumpAndWaitForLandingTask->OnComplete.AddDynamic(this, &ThisClass::OnLanded);
-    JumpAndWaitForLandingTask->ReadyForActivation();
+    // JumpAndWaitForLandingTask->ReadyForActivation();
 }
 
 void UABGA_Jump::InputReleased(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo,
@@ -267,18 +279,13 @@ void UABGA_Jump::OnLanded()
 }
 ```
 
-We also assigned tags in blueprints. Jumping is disabled during an attack, and attacking is disabled during a jump to achieve this, we specified the `Activation Blocked Tags`.
-
-<center>
+To make tags on whether to block activation for jumping or attacking, these were specified in blueprints.
+For jumping, it isn't allowed to attack, and for attacking, it isn't allowed to jump. This was achieved by setting the `Activation Blocked Tags`.
 
 ![jump_tags](img/post/gas/jump_tags.png) ![attack_tags](img/post/gas/attack_tags.png)
 
-</center>
-
 ### Using custom task in Blueprints
-
-```UAbilityTask::NewAbilityTask``` method cannot be called from Blueprints. While modifying the engine code is an option, here we will create a separate static method for task creation and declare the method as `BlueprintCallable`.
-Additionally, we'll declare the OnComplete delegate as `BlueprintAssignable` to indicate the task completion in Blueprints.
+The method `UAbilityTask::NewAbilityTask` cannot be called from blueprints. While modifying engine code is an option, here, we will create a separate static method for task creation and declare the OnComplete delegate as `BlueprintAssignable` to let blueprints know when the task has completed.
 
 ```c++
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FJumpAndWaitForLandingDelegate);
@@ -293,7 +300,7 @@ class ARENABATTLEGAS_API UABAT_JumpAndWaitForLanding : public UAbilityTask
 public:
     UABAT_JumpAndWaitForLanding();
 
-    UFUNCTION(BlueprintCallable, Category="Ability|Task", meta=(
+    UFUNCTION(BlueprintCallable, Category="Abiltiy|Task", meta=(
        DisplayName = "JumpAndWaitForLanding", HidePin = "OwningAbility", DefaultToSelf = "OwningAbility", BlueprintInternalUseOnly=true))
     static UABAT_JumpAndWaitForLanding* CreateTask(UGameplayAbility* OwningAbility);
 
@@ -315,13 +322,7 @@ UABAT_JumpAndWaitForLanding* UABAT_JumpAndWaitForLanding::CreateTask(UGameplayAb
 }
 ```
 
-After modifying the task code as above, comment out the part in `UABGA_Jump::ActivateAbility` method that creates the task with ReadyForActivation.
-Next, bind it in the Jump ability blueprint as shown below.
-
-<center>
+After modifying the task code as above, the part in `UABGA_Jump::ActivateAbility` where the task was created and `ReadyForActivation` was called should be commented out.
+Then, in the blueprint of the Jump ability, bind the delegates.
 
 ![bp_task](img/post/gas/bp_task.png)
-
-</center>
-
-~~Oddly, the task works fine in Blueprints even without calling ReadyForActivation! It seems like the engine internally activates the task once it is created.~~
